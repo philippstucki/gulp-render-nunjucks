@@ -2,6 +2,9 @@
 
 This plugin renders text content to HTML using templates with support for custom filters and tags.
 
+
+**Please note: This plugin is currently not available on NPM as it is not fulfilling all requirements of the gulp plugin guidelines! This will change in the future, but I won't submit it there until I added tests and support for streams.**
+
 While it should work for many scenarios, it's decent element if you want to convert Markdown files to HTML.
 
 By using [gulp-front-matter](), [gulp-markdown]() and this plugin in a single task, you get a basic static page generator.
