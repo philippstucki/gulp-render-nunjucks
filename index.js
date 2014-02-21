@@ -30,7 +30,13 @@ module.exports = function (options) {
 		options.nunjucksConfig);
 
 	// Load plugins
-	_.each(fs.readdirSync(PLUGINS_DIR), function(file) {
+	var pluginFiles;
+	try {
+		pluginFiles = fs.readdirSync(PLUGINS_DIR)
+	} catch(err) {
+		pluginFiles = [];
+	}
+	_.each(pluginFiles, function(file) {
 		var plugin = file.match(/^(filter|tag)-(.*)(?:.js$)/);
 		var type = plugin[1];
 		var name = plugin[2];
