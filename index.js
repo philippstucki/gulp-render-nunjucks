@@ -30,7 +30,13 @@ module.exports = function (options) {
 		options.nunjucksConfig);
 
 	// Load plugins
-	_.each(fs.readdirSync(PLUGINS_DIR), function(file) {
+	var pluginFiles;
+	try {
+		pluginFiles = fs.readdirSync(PLUGINS_DIR)
+	} catch(err) {
+		pluginFiles = [];
+	}
+	_.each(pluginFiles, function(file) {
 		var plugin = file.match(/^(filter|tag)-(.*)(?:.js$)/);
 		var type = plugin[1];
 		var name = plugin[2];
@@ -67,10 +73,10 @@ module.exports = function (options) {
 					content: file.contents.toString()
 				});
 
-			var template = meta.template || options.defaultTemplate;
-			template =+ options.templateExtension;
+			var template = meta && meta.template || options.defaultTemplate;
+			template = template + options.templateExtension;
 
-			nj.render('base.html', context, function(error, result) {
+			nj.render(template, context, function(error, result) {
 				if (error) {
 					this.emit(
 						'error',

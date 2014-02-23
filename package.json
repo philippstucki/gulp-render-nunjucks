@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "A Gulp plugin that renders text content to HTML using templates, with support for custom filters and tags.",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
   "keywords": [
     "gulpplugin"
   ],
@@ -19,10 +22,10 @@
     "through2": "~0.4.0"
   },
   "devDependencies": {
-    "gulp": "~3.5.0"
+    "gulp": "~3.5.0",
+    "mocha": "~1.17.1"
   },
   "engines": {
     "node": ">=0.9.0"
   }
 }
-
